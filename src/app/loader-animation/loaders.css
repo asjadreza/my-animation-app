@@ -1,0 +1,183 @@
+/* lighting effect along the top border  */
+
+
+/* .loader-card {
+  height: 220px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: lightblue;
+  transition: none;
+}
+
+.loader-card:hover::before {
+  animation: slide-border 1.5s ease-in-out infinite;
+}
+
+.loader-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+@keyframes slide-border {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+} */
+
+
+/* traveling lighting effect along the border  */
+
+.loader-card {
+  height: 220px;
+  /* border: 1px solid grey; */
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* .loader-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, lightblue, transparent);
+  background-size: 200% 100%;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: slide-border 1.5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+} */
+
+:root {
+  --highlight: #c9f056;   /* light-mode: yellowish highlight */
+  --card-border: rgb(82, 223, 216); /* light-mode highlight (higher contrast on light backgrounds) */
+}
+
+/* keep the current lightblue for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --highlight: lightblue;
+    --card-border: rgb(43, 86, 84);
+  }
+}
+
+.loader-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, var(--highlight), transparent);
+  background-size: 200% 100%;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: slide-border 1.5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.loader-card:hover::before {
+  opacity: 1;
+}
+
+.loader-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+@keyframes slide-border {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+
+/* ✅ Center loader vertically + horizontally */
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Spinner */
+.spinner {
+  border: 6px solid #e9ecef;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dot loader */
+.dot-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot-loader div {
+  width: 14px;
+  height: 14px;
+  margin: 0 4px;
+  background-color: #007bff;
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.dot-loader div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot-loader div:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  to {
+    opacity: 0.3;
+    transform: translateY(-10px);
+  }
+}

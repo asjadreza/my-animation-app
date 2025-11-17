@@ -1,66 +1,63 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import Button from "@/components/MemoizedChild";
 
 export default function Home() {
+  const [count, setCount] = useState<number>(0);
+  const [count1, setCount1] = useState<number>(0);
+
+  // useEffect to update the document title whenever the count changes
+  useEffect(() => {
+    if(count === 0) {
+      document.title = `My Animation App`
+    } else {
+      document.title = `Count: ${count}`
+    }
+  }, [count]); // runs every time count updates
+
+  // useCallback
+  const handleClick = useCallback(() => {
+    setCount1((prev) => prev + 1)
+  }, [])
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+
+    // <div style={{ textAlign: "center", marginTop: "30px" }}>
+    //   <h1>Counter Example</h1>
+    //   <h2>Count: {count}</h2>
+
+    //   <button
+    //     onClick={() => setCount((prev) => prev + 1)}
+    //     style={{
+    //       padding: "10px 20px",
+    //       fontSize: "18px",
+    //       cursor: "pointer",
+    //       marginTop: "10px",
+    //     }}
+    //   >
+    //     Increase Count
+    //   </button>
+
+    //   <button
+    //     onClick={() => setCount(0)}
+    //     style={{
+    //       padding: "10px 20px",
+    //       fontSize: "18px",
+    //       cursor: "pointer",
+    //       marginTop: "10px",
+    //       marginLeft: "1rem"
+    //     }}
+    //   >
+    //     Reset
+    //   </button>
+    // </div>
+
+    <div>
+      <h1>Count: {count1}</h1>
+      <Button onClick={handleClick} />
     </div>
+
   );
 }
