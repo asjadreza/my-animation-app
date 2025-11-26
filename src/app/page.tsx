@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Button from "@/components/MemoizedChild";
+import Button1 from "@/components/Button";
 
 export default function Home() {
   const [count, setCount] = useState<number>(0);
@@ -16,48 +17,63 @@ export default function Home() {
     }
   }, [count]); // runs every time count updates
 
+  const handleIncreaseCount = () => {
+    setCount((prev) => prev + 1)
+  }
+
+  const handleDecreaseCount = () => {
+    setCount((prev) => prev - 1 )
+  }
+
   // useCallback
-  const handleClick = useCallback(() => {
-    setCount1((prev) => prev + 1)
+  const handleClick1 = useCallback(() => {
+    setCount((prev) => prev + 1)
+  }, [])
+
+  const handleClick2 = useCallback(() => {
+    setCount((prev) => prev - 1)
   }, [])
 
   return (
 
 
-    // <div style={{ textAlign: "center", marginTop: "30px" }}>
-    //   <h1>Counter Example</h1>
-    //   <h2>Count: {count}</h2>
+    <div style={{ textAlign: "center", marginTop: "30px" }}>
+      <h1>Counter Example</h1>
+      <h2>Count: {count}</h2>
 
-    //   <button
-    //     onClick={() => setCount((prev) => prev + 1)}
-    //     style={{
-    //       padding: "10px 20px",
-    //       fontSize: "18px",
-    //       cursor: "pointer",
-    //       marginTop: "10px",
-    //     }}
-    //   >
-    //     Increase Count
-    //   </button>
+      {/* <button
+        onClick={() => setCount((prev) => prev + 1)}
+        style={{
+          padding: "10px 20px",
+          fontSize: "18px",
+          cursor: "pointer",
+          marginTop: "10px",
+        }}
+      >
+        Increase Count
+      </button> */}
 
-    //   <button
-    //     onClick={() => setCount(0)}
-    //     style={{
-    //       padding: "10px 20px",
-    //       fontSize: "18px",
-    //       cursor: "pointer",
-    //       marginTop: "10px",
-    //       marginLeft: "1rem"
-    //     }}
-    //   >
-    //     Reset
-    //   </button>
-    // </div>
+      {/* <Button onClick={handleClick1} /> */}
+      <Button1 onClick={handleIncreaseCount} />
 
-    <div>
-      <h1>Count: {count1}</h1>
-      <Button onClick={handleClick} />
+      <button
+        onClick={() => setCount(0)}
+        style={{
+          padding: "10px 20px",
+          fontSize: "18px",
+          cursor: "pointer",
+          marginTop: "10px",
+          marginLeft: "1rem"
+        }}
+      >
+        Reset
+      </button>
     </div>
+
+    // <div>
+    //   <h1>Count: {count1}</h1>
+    //   <Button onClick={handleClick} />
+    // </div>
 
   );
 }
