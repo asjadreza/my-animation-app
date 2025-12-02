@@ -54,7 +54,7 @@ export default function Home() {
       </button> */}
 
       {/* <Button onClick={handleClick1} /> */}
-      <Button1 onClick={handleIncreaseCount} />
+      <Button onClick={handleIncreaseCount} />
 
       <button
         onClick={() => setCount(0)}
@@ -77,3 +77,5 @@ export default function Home() {
 
   );
 }
+
+

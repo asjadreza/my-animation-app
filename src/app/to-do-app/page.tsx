@@ -249,7 +249,7 @@ export default function TodoApp() {
               onClick={() => toggleTodo(todo.id)}
               style={{
                 cursor: "pointer",
-                flex: "1",
+                flex: "1", 
                 color: "#000000ff",
               }}
             >
