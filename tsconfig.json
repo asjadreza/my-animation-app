@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/app/counter-app/page.tsx", "src/services/storyServices.js", "src/app/to-do-app/page.tsx", "src/app/todo-app/page.jsx"  ],
+, "src/app/counter-app/page.tsx", "src/services/storyServices.js", "src/app/to-do-app/page.tsx", "src/app/todo-app/page.jsx", "src/app/use-ref/page.jsx"  ],
   "exclude": ["node_modules"]
 }
