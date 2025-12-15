@@ -79,6 +79,7 @@ export default function PracticeApp() {
   const totalPages = Math.ceil(users.length / USERS_PER_PAGE);
   const currentUsers = useMemo(() => {
     const startIndex = (currentPage - 1) * USERS_PER_PAGE;
+    console.log(startIndex)
     return filteredUsers.slice(startIndex, startIndex + USERS_PER_PAGE);
   }, [filteredUsers, currentPage]);
 
