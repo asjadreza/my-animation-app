@@ -3,6 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import Button from "@/components/MemoizedChild";
 import Button1 from "@/components/Button";
+import Greeting from "@/components/Greeting";
+
+
 
 export default function Home() {
   const [count, setCount] = useState<number>(0);
@@ -34,9 +37,12 @@ export default function Home() {
     setCount((prev) => prev - 1)
   }, [])
 
+  const user = {
+    name: "Asjad",
+    role: "Software Developer"
+  }
+
   return (
-
-
     <div style={{ textAlign: "center", marginTop: "30px" }}>
       <h1>Counter Example</h1>
       <h2>Count: {count}</h2>
@@ -68,6 +74,9 @@ export default function Home() {
       >
         Reset
       </button>
+
+      <Greeting user={user} />
+
     </div>
 
     // <div>

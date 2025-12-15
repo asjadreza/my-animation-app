@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // useState vs useRef
 
@@ -66,10 +66,15 @@ function InputFocus() {
     inputRef.current.focus(); // directly focus the DOM input element
   };
 
+//   with this below useEffect the input box will automatically gets focussed
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
+
   return (
     <>
       <input type="text" ref={inputRef} placeholder="Type here..." />
-      <button onClick={handleFocus}>Focus Input</button>
+      {/* <button onClick={handleFocus}>Focus Input</button> */}
     </>
   );
 }
